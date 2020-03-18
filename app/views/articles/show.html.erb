@@ -5,7 +5,16 @@
         <div class="well col-xs-6">
             <%= @article.description %>
             
+            <% if @article.user %>
+            <div class="article-action" >
+                <%= gravatar_for @article.user, size:50 %><br/>
+                <small>
+                    Article créé par <%= link_to @article.user.username, user_path(@article.user) %>
+                </small>
+            </div>
+            <% end %>
             <div class="article-action">
+                
                 <%= link_to "Editer cet article", edit_article_path(@article), class: "btn btn-xs btn-primary"  %>
                 <%= link_to "Supprimer cet article", article_path(@article), method: :delete, class: "btn btn-xs btn-danger" %>
                 <%= link_to "Retour a la liste", articles_path, class: "btn btn-xs btn-success" %> 
